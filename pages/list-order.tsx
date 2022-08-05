@@ -13,13 +13,15 @@ const fetcher = async () => {
 };
 export default function ListOrderPage({ order }: ListOrderPageProps) {
   console.log(order);
-  const { data, error } = useSWR('https://6274e2bf345e1821b230ebee.mockapi.io/orders', fetcher)
+  const { data: orders } = useSWR('https://6274e2bf345e1821b230ebee.mockapi.io/orders', fetcher);
+
+  console.log(orders);
 
   return (
     <>
       <h1>Hello</h1>
       {
-        data.map((item: any) => (
+        orders && orders.map((item: any) => (
           <>
             <h1>Order{item.id}</h1>
             <h1>{item.isPaid.toString()}</h1>
@@ -27,6 +29,10 @@ export default function ListOrderPage({ order }: ListOrderPageProps) {
         )
         )
       }
+      <div>
+      
+      </div>
+
     </>
   );
 }
