@@ -1,0 +1,32 @@
+.page-cart {
+  display: flex;
+  justify-content: space-between;
+  .table-cart {
+    width: 70%;
+  }
+  .total-price {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem;
+    .price {
+      line-height: 32px;
+      font-size: 24px;
+      margin-bottom: 1rem;
+    }
+    .btn-checkout {
+      text-transform: uppercase;
+      background-color: #f9f400;
+      color: #111;
+    }
+  }
+}
+.link-comeback {
+  @include pxRem(font-size, 24px);
+  display: flex;
+  align-items: center;
+  color: #1890ff !important;
+  &:hover {
+    opacity: 0.6;
+  }
+}

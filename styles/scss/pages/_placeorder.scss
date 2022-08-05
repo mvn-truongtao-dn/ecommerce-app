@@ -1,0 +1,26 @@
+.section-placeorder {
+  display: flex;
+  justify-content: space-between;
+  .info-order {
+    width: 75%;
+  }
+  .total-bill {
+    width: 25%;
+    @include pxRem(padding, 16px);
+    @include pxRem(margin-left, 10px);
+    min-height: 400px;
+    .item-bill {
+      display: flex;
+      justify-content: space-between;
+      @include pxRem(font-size, 16px);
+      @include pxRem(padding, 8px);
+    }
+  }
+  .block-info-placeorder {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
+    @include pxRem(padding, 16px);
+    @include pxRem(margin-bottom, 10px);
+  }
+}

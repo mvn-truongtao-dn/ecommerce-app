@@ -1,0 +1,148 @@
+.page-home {
+  margin-top: 82px;
+}
+.custom-image {
+  object-fit: scale-down;
+  flex: 1;
+}
+.product-block {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-height: 500px;
+  .ant-card {
+    display: flex;
+    max-width: 300px;
+    flex-direction: column;
+    @include pxRem(margin, 0px 10px 10px 10px);
+    .ant-card-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .ant-card-meta {
+      flex: 1;
+      .ant-card-meta-detail {
+        background-color: #fff;
+        color: #3399ff;
+        padding: 1rem;
+      }
+      &:hover {
+        .custom-image {
+          transform: scale(1.05);
+          transition-property: transform;
+          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+          transition-duration: 0.5s;
+        }
+      }
+    }
+  }
+}
+
+.product-detail {
+  display: flex;
+  position: relative;
+  .product-image-card {
+    background-color: #bfcae6;
+  }
+  .product-img {
+    width: 100%;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    .product-detail-image {
+      object-fit: scale-down;
+    }
+    .list-image-product {
+      .list-image {
+        display: flex;
+        .item-image {
+          width: 25%;
+          cursor: pointer;
+          &:hover {
+            transform: scale(1.05);
+            transition-property: transform;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 0.5s;
+          }
+        }
+      }
+    }
+  }
+  .product-content {
+    width: 40%;
+    padding: 1.5rem;
+    .product-description {
+      @include pxRem(font-size, 16px);
+      @include pxRem(line-height, 24px);
+    }
+    .product-evaluate {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 0;
+      .review-product {
+        color: #444;
+        font-size: $font-size-base;
+      }
+    }
+  }
+}
+.animation-addtocart {
+  position: absolute;
+  z-index: 999;
+  width: 100px;
+  top: -10px;
+  right: -10px;
+  opacity: 0;
+  // animation: xAxis 1s alternate forwards cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+  // &::before {
+  animation: yAxis 1s alternate forwards cubic-bezier(0.165, 0.84, 0.44, 1)
+    infinite;
+
+  // }
+  &.sendtocart {
+  }
+}
+// @keyframes xAxis {
+//   100% {
+//     transform: translateX(calc(-50vw + 0px));
+//   }
+// }
+
+// @keyframes yAxis {
+//   0% {
+//     transform: translate(0, 0);
+//   }
+//   25% {
+//     transform: translate(calc(-10vw - 0px), calc(-10vh - 0px));
+//   }
+//   50% {
+//     transform: translate(calc(-20vw - 0px), calc(-20vh - 0px));
+//   }
+//   75% {
+//     transform: translate(calc(-10vw - 0px), calc(-30vh - 0px));
+//   }
+//   100% {
+//     transform: translate(0, calc(-50vh - 0px));
+//   }
+//   // 90% {
+//   //   transform: translateY(calc(-50vh - 0px));
+//   //   opacity: 1;
+//   // }
+//   // 100% {
+//   //   transform: translate(calc(-50vh - 0px));
+//   //   // opacity: 0;
+//   // }
+// }
+.uppercase {
+  text-transform: uppercase;
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+.subtitle-product {
+  font-size: $font-size-base;
+  font-weight: 500;
+  line-height: 1.25rem;
+}

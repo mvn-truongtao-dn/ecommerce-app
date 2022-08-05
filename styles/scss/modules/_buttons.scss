@@ -1,0 +1,67 @@
+.btn {
+  @include pxRem(padding, 8 16);
+  @include pxRem(border-radius, 8);
+  @include pxRem(font-size, 18);
+  @include pxRem(height, 40);
+  background: map-get($colors, primary);
+  color: map-get($colors, white);
+  line-height: 1;
+  cursor: pointer;
+  transition: background 400ms ease;
+  border: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background: map-get($colors, primary-dark);
+  }
+  &:focus {
+    outline: none;
+  }
+  &.disabled,
+  &:disabled {
+    pointer-events: none;
+    color: map-get($colors, txt-disabled);
+    border-color: map-get($colors, txt-disabled);
+    background: map-get($colors, bg-gray-light);
+  }
+}
+.listbox {
+  padding: 1rem 0;
+  .itembox {
+    display: inline-block;
+    width: 2.75rem;
+    height: 2.75rem;
+    cursor: pointer;
+    border-radius: 50%;
+    text-transform: uppercase;
+    &:not(:last-child) {
+      margin-right: 0.5rem;
+    }
+    &:hover {
+      border: 1px solid blue;
+    }
+  }
+}
+.btn-addtocart {
+  padding: 1.5rem;
+  width: 100%;
+  position: relative;
+  background-color: #111;
+  color: #fff;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.5;
+  }
+}
+.ant-btn {
+  width: 100%;
+}
+.w-100 {
+  width: 100%;
+}
+.btn-warning {
+  background-color: #ffc107;
+  text-transform: uppercase;
+  color: #111;
+}
