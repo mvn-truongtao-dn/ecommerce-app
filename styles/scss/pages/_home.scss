@@ -5,34 +5,67 @@
   object-fit: scale-down;
   flex: 1;
 }
-.product-block {
+.product-section {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  max-height: 500px;
-  .ant-card {
-    display: flex;
-    max-width: 300px;
-    flex-direction: column;
-    @include pxRem(margin, 0px 10px 10px 10px);
-    .ant-card-body {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
+  .navbar-product {
+    width: 280px;
+    .ant-collapse-header {
+      flex-direction: row-reverse;
     }
-    .ant-card-meta {
-      flex: 1;
-      .ant-card-meta-detail {
-        background-color: #fff;
-        color: #3399ff;
-        padding: 1rem;
+  }
+  .product-block {
+    display: flex;
+    @include pxRem(padding-left, 20px);
+    flex-wrap: wrap;
+    width: calc(100% - 280px);
+    flex-direction: row;
+    .product-top {
+      width: 100%;
+      @include pxRem(padding-bottom, 20px);
+      .product-top-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .quantity-showing {
+          margin: 0;
+        }
       }
-      &:hover {
-        .custom-image {
-          transform: scale(1.05);
-          transition-property: transform;
-          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-          transition-duration: 0.5s;
+    }
+    .product-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      .product-list-content {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+    }
+    .ant-card {
+      display: flex;
+      max-width: 300px;
+      flex-direction: column;
+      @include pxRem(margin-bottom, 10px);
+      .ant-card-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .ant-card-meta {
+        flex: 1;
+        .ant-card-meta-detail {
+          background-color: #fff;
+          color: #3399ff;
+          padding: 1rem;
+        }
+        &:hover {
+          .custom-image {
+            transform: scale(1.05);
+            transition-property: transform;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 0.5s;
+          }
         }
       }
     }
@@ -145,4 +178,16 @@
   font-size: $font-size-base;
   font-weight: 500;
   line-height: 1.25rem;
+}
+.ant-pagination {
+  flex: 1;
+  @include pxRem(margin, 20px 0 !important);
+}
+.text-700 {
+  color: #393280;
+  font-weight: 700;
+  line-height: 32px;
+  .ant-collapse-header {
+    color: #393280 !important;
+  }
 }

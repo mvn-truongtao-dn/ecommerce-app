@@ -1,0 +1,14 @@
+.bg-loading {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: hsla(0, 0%, 7%, 0.36);
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(4px);
+}

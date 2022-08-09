@@ -65,3 +65,11 @@
   text-transform: uppercase;
   color: #111;
 }
+.btn-login {
+  float: right;
+  @include pxRem(padding, 18px);
+  line-height: 0;
+  background: #007DFA;
+  color: #fff;
+  border: 0.5rem;
+}

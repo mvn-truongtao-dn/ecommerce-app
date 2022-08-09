@@ -49,7 +49,7 @@ export default function PlaceOrder(props: Props) {
       setIsLoading(true);
       const { data } = await axios.post('https://6274e2bf345e1821b230ebee.mockapi.io/orders', {
         cartItems: cartItemInfo,
-        paymentMethod: paymentMethodInfo,
+        paymentMethod: paymentMethod,
         shippingAddress: shippingInfo,
         itemsPrice,
         shippingPrice,

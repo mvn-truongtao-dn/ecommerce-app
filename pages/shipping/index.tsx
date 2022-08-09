@@ -7,6 +7,8 @@ import { SaveShippingAddress } from '../../store/productSlice';
 import { RootState } from '../../store/store';
 import { useRouter } from 'next/router';
 import StepComponent from '../../components/step';
+import { MainLayout } from '../../components/layout';
+import { Auth } from '../../components/common/auth';
 
 export interface ShippingPageProps {
 }
@@ -48,8 +50,7 @@ export default function ShippingPage(props: ShippingPageProps) {
   console.log(shippingAddress);
 
   return (
-    <>
-      <Header></Header>
+    <Auth>
       <main className='page-main'>
         <div className="container">
           <StepComponent id={1} />
@@ -85,6 +86,7 @@ export default function ShippingPage(props: ShippingPageProps) {
           </div>
         </div>
       </main>
-    </>
+    </Auth>
   );
 }
+ShippingPage.Layout = MainLayout;
