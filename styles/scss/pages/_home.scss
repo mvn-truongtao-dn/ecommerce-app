@@ -35,6 +35,8 @@
     .product-list {
       display: flex;
       flex-wrap: wrap;
+      flex: 1;
+      flex-direction: column;
       justify-content: space-between;
       .product-list-content {
         display: flex;
@@ -47,6 +49,9 @@
       max-width: 300px;
       flex-direction: column;
       @include pxRem(margin-bottom, 10px);
+      .ant-card-cover {
+        padding: 1rem;
+      }
       .ant-card-body {
         flex: 1;
         display: flex;
@@ -120,6 +125,28 @@
     }
   }
 }
+.input-field {
+  display: flex !important;
+  align-items: center;
+  @include pxRem(padding, 16px 0);
+  &:first-child {
+    @include pxRem(padding-top, 0);
+
+  }
+  .label-price {
+    display: inline-block;
+    @include pxRem(font-size, 16px);
+    @include pxRem(margin-right, 10px);
+  }
+  .input-price {
+    display: inline-block;
+  }
+}
+.btn-filter-price {
+  width: 100%;
+  background-color: #393280;
+}
+
 .animation-addtocart {
   position: absolute;
   z-index: 999;

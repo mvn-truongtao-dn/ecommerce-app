@@ -11,6 +11,7 @@
   "dependencies": {
     "@paypal/react-paypal-js": "^7.8.1",
     "@reduxjs/toolkit": "^1.8.3",
+    "@stripe/stripe-js": "^1.35.0",
     "@types/cookies": "^0.7.7",
     "@types/http-proxy": "^1.17.9",
     "antd": "^4.22.2",

@@ -1,4 +1,4 @@
-import { Button, Card } from 'antd';
+import { Button, Card, Rate } from 'antd';
 import Meta from 'antd/lib/card/Meta';
 import axios from 'axios';
 import Image from 'next/image';
@@ -7,7 +7,7 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CartAddItem } from '../../store/productSlice';
 import { RootState } from '../../store/store';
-
+import { useState, useEffect } from 'react'
 export interface ProductCardProps {
   product: any,
 
@@ -16,6 +16,7 @@ export interface ProductCardProps {
 export default function ProductCard({ product
 }: ProductCardProps) {
   const dispatch = useDispatch();
+  const [value, setValue] = useState();
   const cartItems = useSelector((state: RootState) => state.products.cart.cartItems);
   const handleClickAddToCart = async (product: any) => {
     const existItem = cartItems.find((item) => item.id === product.id);
@@ -28,6 +29,9 @@ export default function ProductCard({ product
     dispatch(CartAddItem({ ...product, quantity }));
     document.querySelector(".animation-addtocart")?.classList.add("sendtocart");
   }
+  useEffect(() => {
+    setValue(product.rating);
+  })
   return (
     <Card
       hoverable
@@ -38,7 +42,17 @@ export default function ProductCard({ product
       </Link>}
     >
 
-      <Meta title={product.title} description={product.description} />
+      <Meta title={product.title} description={
+        <>
+          {product.description}
+          <div> 
+            <Rate value={value} />
+          </div>
+        </>
+      } />
+      <span>
+
+      </span>
       <Button onClick={() => handleClickAddToCart(product)} className='btn' type='primary'>Add to Cart</Button>
     </Card>
   );

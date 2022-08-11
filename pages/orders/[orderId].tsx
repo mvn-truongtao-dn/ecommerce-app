@@ -14,7 +14,6 @@ const initialOptions = {
   currency: "USD",
   intent: "capture",
   "client-id": "ATlx1DWUI5l07_CLshplxlLtkCGhS892C8ur-s_Iy4OPk05t95bJwWtVhlfUQV2X5N9ANjWa-6YPvKRm",
-  // "data-client-token": "A21AALUnG7Dgwz7dx8DIll-BNNh3q12wVJV1MC8cJ8GfIowYVPTYwRqAG8YGc8-LmYZNUuaeX3aLhk9QQ5w0rFcPtfCyjq5TA",
 };
 export interface OrdersPageProps {
   order: any
@@ -25,7 +24,8 @@ export default function OrdersPage({ order }: OrdersPageProps) {
   const router = useRouter();
   const [paidFor, setPaidFor] = useState(false);
   const [error, setError] = useState<string | unknown>();
-  const [{ isPending }, paypalDispatch] = usePayPalScriptReducer(); if (router.isFallback) {
+  const [{ isPending }] = usePayPalScriptReducer();
+  if (router.isFallback) {
     return <><Spin></Spin></>
   }
   const handleApprove = () => {
@@ -37,6 +37,8 @@ export default function OrdersPage({ order }: OrdersPageProps) {
   if (error) {
     alert(error);
   }
+  console.log(isPending);
+
   return (
     <>
       <Header></Header>
@@ -127,53 +129,61 @@ export default function OrdersPage({ order }: OrdersPageProps) {
                   </>
                 )
               } */}
-              <PayPalScriptProvider options={initialOptions}>
-                <PayPalButtons
-                  // onClick={(data, actions) => {
-                  //   //Validate on button Click, client or server side
-                  //   const hasAlreadyBoughtCourse = false;
-                  //   if (hasAlreadyBoughtCourse) {
-                  //     setError("You already bought this course. Go to your account to view list of course");
-                  //     return actions.reject();
-                  //   } else {
-                  //     return actions.resolve();
-                  //   }
+              {
+                order?.paymentMethod.paymentMethod === "stripe" ? (<h1>Stripe</h1>) : (
+                  <PayPalScriptProvider options={initialOptions}>
+                    {isPending ? <Spin></Spin> : null}
 
-                  // }}
-                  createOrder={(data, actions) => {
-                    return actions.order.create({
-                      purchase_units: [
-                        {
-                          amount: {
-                            value: `${order.totalPrice}`,
-                          },
-                        },
-                      ],
-                    });
-                  }}
-                  onApprove={(data, actions: any) => {
-                    return actions.order.capture().then(async (details: any) => {
-                      console.log(details);
-                      order.isPaid = true;
-                      order.paidAt = Date.now();
-                      await axios.put(`https://6274e2bf345e1821b230ebee.mockapi.io/orders/${order.id}`, {
-                        isPaid: true,
-                        paidAt: Date.now()
-                      })
-                      await axios.post('https://6274e2bf345e1821b230ebee.mockapi.io/paypal', { details });
-                      router.push('/list-order');
-                    });
-                  }}
-                  onCancel={() => {
-                    //Display cancel message, modal or redirect user to cancel page or back to cart
+                    <PayPalButtons
+                      // onClick={(data, actions) => {
+                      //   //Validate on button Click, client or server side
+                      //   const hasAlreadyBoughtCourse = false;
+                      //   if (hasAlreadyBoughtCourse) {
+                      //     setError("You already bought this course. Go to your account to view list of course");
+                      //     return actions.reject();
+                      //   } else {
+                      //     return actions.resolve();
+                      //   }
 
-                  }}
-                // onError={(err) => {
-                //   setError(err);
-                //   console.error("PayPal Checkout onError", err);
-                // }}
-                />
-              </PayPalScriptProvider>
+                      // }}
+                      createOrder={(data, actions) => {
+                        return actions.order.create({
+                          purchase_units: [
+                            {
+                              amount: {
+                                value: `${order.totalPrice}`,
+                              },
+                            },
+                          ],
+                        });
+                      }}
+                      onApprove={(data, actions: any) => {
+                        return actions.order.capture().then(async (details: any) => {
+                          console.log(details);
+                          order.isPaid = true;
+                          order.paidAt = Date.now();
+                          await axios.put(`https://6274e2bf345e1821b230ebee.mockapi.io/orders/${order.id}`, {
+                            isPaid: true,
+                            paidAt: Date.now()
+                          })
+                          await axios.post('https://6274e2bf345e1821b230ebee.mockapi.io/paypal', { details });
+                          router.push('/list-order');
+                        });
+                      }}
+                      onCancel={() => {
+                        //Display cancel message, modal or redirect user to cancel page or back to cart
+
+                      }}
+                    // onError={(err) => {
+                    //   setError(err);
+                    //   console.error("PayPal Checkout onError", err);
+                    // }}
+                    />
+
+                  </PayPalScriptProvider>
+                )
+              }
+
             </div>
           </div>
         </div>
